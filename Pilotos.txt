@@ -2,3 +2,4 @@ Verstappen;Red Bull;255
 Hamilton;Mercedes;190
 Alonso;Aston Martin;170
 Leclerc;Ferrari;185
+Piloto1;escuderia1;100

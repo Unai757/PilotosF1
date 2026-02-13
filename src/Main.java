@@ -15,7 +15,7 @@ public class Main {
         mostrarPilotos();
         anhadirPilotos();
         buscarPilotos();
-        guardarDatos();
+        CrearArchivo.guardarDatos();
 
     }
 
@@ -53,10 +53,13 @@ public class Main {
         }
 
     }
-//Creamos el metodo de añadirPilotos
+
+    //Creamos el metodo de añadirPilotos
     public static void anhadirPilotos() {
         //Creamos un scanner para usarlo mas tarde
         Scanner sc = new Scanner(System.in);
+        System.out.println("Añade un piloto");
+        System.out.println("------------------------------");
         //Pedimos el nombre del piloto para que lo busque
         System.out.println("Introduce el nombre del piloto: ");
         String nombre = sc.nextLine();
@@ -85,8 +88,10 @@ public class Main {
 
     }
 
-//En este metodo sirve para buscar pilotos si encuentra el nombre nos da toda la información
+    //En este metodo sirve para buscar pilotos si encuentra el nombre nos da toda la información
     public static void buscarPilotos() {
+        System.out.println("Busca un piloto");
+        System.out.println("------------------------------");
         System.out.println("Dime el nombre del piloto que quieres buscar: ");
         String nombrebuscado;
         Scanner sc = new Scanner(System.in);
@@ -94,32 +99,19 @@ public class Main {
         boolean encontrado = false;
         for (Piloto piloto : pilotos) {
             if (piloto.getNombre().equals(nombrebuscado)) {
+                System.out.println(piloto);
                 encontrado = true;
 
 
             }
             if (encontrado) {
-                System.out.println(piloto);
+                break;
+
             }
+
         }
-    }
-//Y en este metodo para guardar el arraylist a un archivo de texto
-    public static void guardarDatos() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce el nombre del archivo: ");
-        String nombrearchivo = sc.nextLine();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombrearchivo))) {
-//Recorremos la lista y ponemos los datos en ese archivo
-            for (Piloto piloto : pilotos) {
-                writer.write(piloto.getNombre());
-                writer.write(";");
-                writer.write(piloto.getEscuderia());
-                writer.write(";");
-                writer.write("" + piloto.getPuntos());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (!encontrado) {
+            System.out.println("El piloto " + nombrebuscado + " no existe");
         }
     }
 
